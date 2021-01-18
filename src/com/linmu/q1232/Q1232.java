@@ -1,0 +1,30 @@
+package com.linmu.q1232;
+
+import sun.plugin.dom.core.CoreConstants;
+
+import java.util.Arrays;
+import java.util.Comparator;
+
+/**
+ * @author ：xxx_
+ * @date ：Created in 2021/1/17 2:19 下午
+ * @description：leetcode q1232
+ * @modified By：
+ * @version: 1.0
+ */
+public class Q1232 {
+    public static void main(String[] args) {
+
+    }
+}
+
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        for(int i=2;i<coordinates.length;i++) {
+            if((coordinates[1][1]-coordinates[0][1])*(coordinates[i][0]-coordinates[0][0])!=(coordinates[i][1]-coordinates[0][1])*(coordinates[1][0]-coordinates[0][0])) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
