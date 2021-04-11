@@ -9,22 +9,10 @@ import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        int T = scanner.nextInt();
-
-        int[][] data = new int[T][];
-
-        for (int i = 0; i < T; i++) {
-            int n = scanner.nextInt();
-            data[i] = new int[n];
-            for (int j = 0; j < data[i].length; j++) {
-                data[i][j] = scanner.nextInt();
-            }
-        }
-
-        for (int i = 0; i < data.length; i++) {
-            System.out.println(maxGet(data[i]));
+        try{
+            return;
+        }finally {
+            System.out.println("ince");
         }
     }
 
