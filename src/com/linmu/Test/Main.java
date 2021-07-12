@@ -1,62 +1,61 @@
 package com.linmu.Test;
 
 import com.sun.org.apache.regexp.internal.RE;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
+import java.io.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 
-
-
-public class Main{
+/**
+ * @author xxx_
+ */
+public class Main {
     public static void main(String[] args) {
-        try{
-            return;
-        }finally {
-            System.out.println("ince");
-        }
+        Test test = new Test("111", "222", "333");
+
     }
 
-    /**
-     * 给定数据返回最大的获取价值量
-     * @param data
-     * @return
-     */
-    public static int maxGet(int[] data){
-
-        int max = 0;
-
-        for (int i = 0; i < data.length; i++) {
-            //没有被选择过
-            if(data[i] != -1){
-                int temp = data[i];
-                int preNum = 0, preIndex = (i-1+data.length)%data.length;
-                int lastNum = 0, lastIndex = (i+1)%data.length;
-
-                data[i] = -1;
-
-                //将前后两个位置都置为-1
-                while (data[preIndex] == -1){
-                    preIndex = (preIndex - 1 + data.length) % data.length;
-                }
-                while (data[lastIndex] == -1){
-                    lastIndex = (lastIndex + 1) % data.length;
-                }
-
-                preNum = data[preIndex];
-                lastNum = data[lastIndex];
-
-                data[preIndex] = data[lastIndex] = -1;
+}
 
 
+class Test implements Externalizable {
+    private String data1;
+    private String data2;
+    private String data3;
 
-                max = Math.max(max, temp + maxGet(data));
-
-                data[preIndex] = preNum;
-                data[lastIndex] = lastNum;
-                data[i] = temp;
-            }
-        }
-
-        return max;
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(data1);
+        out.writeObject(data3);
     }
+
+    
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        data1 = (String) in.readObject();
+        data3 = (String) in.readObject();
+    }
+
+
+    Test(String data1, String data2, String data3){
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+    }
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "data1='" + data1 + '\'' +
+                ", data2='" + data2 + '\'' +
+                ", data3='" + data3 + '\'' +
+                '}';
+    }
+
+
 }
