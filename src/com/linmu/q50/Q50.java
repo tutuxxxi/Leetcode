@@ -17,19 +17,21 @@ public class Q50 {
 
 class Solution {
     public double myPow(double x, int n) {
-        BigDecimal base = new BigDecimal(String.valueOf(x));
-        BigDecimal res = base;
-
-        if(n > 0){
-            for(int i = 1; i<n; i++){
-                res = res.multiply(base);
+        if(n == 0) {
+            return 1;
+        }
+        if(n < 0) {
+            if(n == Integer.MIN_VALUE) {
+                return 1/(myPow(x, Integer.MAX_VALUE) * x);
             }
-        }else{
-            for(int i = 0; i>n; i--){
-                res = res.divide(base);
-            }
+            return 1/myPow(x, -n);
         }
 
-        return res.doubleValue();
+        double temp = myPow(x, n/2);
+        if(n % 2 == 0) {
+            return temp * temp;
+        }else {
+            return temp * temp * x;
+        }
     }
 }

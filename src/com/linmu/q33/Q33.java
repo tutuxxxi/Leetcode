@@ -12,15 +12,37 @@ public class Q33 {
 
     }
 }
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
 
-//class Solution {
-//    public int search(int[] nums, int target) {
-//        if(nums == null || nums.length == 0){
-//            return -1;
-//        }
-//        int preIndex = 0, lastIndex = nums.length-1;
-//
-//
-//
-//    }
-//}
+        while(left <= right){
+            int mid = (left + right) / 2;
+
+            if(nums[mid] == target) {
+                return mid;
+            }
+
+            // 右边有序
+            if(nums[mid] < nums[right]){
+                // 目标值在右边
+                if(target > nums[mid] && target <= nums[right]){
+                    left = mid + 1;
+                // 目标值在左边
+                }else{
+                    right = mid - 1;
+                }
+            // 左边有序
+            }else{
+                // 目标值在左边
+                if(target >= nums[left] && target < nums[mid]){
+                    right = mid - 1;
+                // 目标值在右边
+                }else{
+                    left = mid + 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
