@@ -1,37 +1,25 @@
 package com.linmu.Test;
 
-import com.sun.org.apache.bcel.internal.generic.LoadClass;
-
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.LockSupport;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.Scanner;
 
 /**
  * @author xxx_
  */
-public class Main{
-    public static void main(String[] args) throws InterruptedException {
-        String[] strings = new String[]{
-                "123", "234", "345", "456"
-        };
+public class Main {
+    public static void main(String[] args) {
+        // 获取输入
+        Scanner scanner = new Scanner(System.in);
+        // 读取一个整数
+        int n = scanner.nextInt();
+        // 循环n次，读取n个字符串到数组
+        String[] strs = new String[n];
+        for (int i = 0; i < n; i++) {
+            strs[i] = scanner.next();
+        }
 
-        List<String> strings1 = Arrays.asList(strings);
-        strings1.remove("123");
+        // 循环n次，将字符串从十六进制转为八进制
+        for (int i = 0; i < n; i++) {
+            System.out.println(Integer.toOctalString(Integer.parseInt(strs[i], 16)));
+        }
     }
 }
-
-/*
-        Thread thread3 = new Thread(() -> {
-            try {
-                Thread.sleep(2000);
-                lock.lock();
-                lock.unlock();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }, "thread3");
-
-        thread3.start();
- */

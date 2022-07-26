@@ -1,5 +1,7 @@
 package com.linmu.q324;
 
+import java.util.Arrays;
+
 /**
  * @author ：xxx_
  * @date ：Created in 2021/7/9 8:47 上午
@@ -9,16 +11,33 @@ package com.linmu.q324;
  */
 public class Q324 {
     public static void main(String[] args) {
-        System.out.println(new Solution().isPowerOfFour(Integer.MAX_VALUE));
+
     }
 }
 
+// 1 5 1 1 6 4 7
+// 1 1 1 4 5 6 7
+
+//
+
 class Solution {
-    public boolean isPowerOfFour(int n) {
-        double num = n;
-        while(num > 1){
-            num /= 4;
+    public void wiggleSort(int[] nums) {
+        int length = nums.length;
+
+        int[] sort = Arrays.copyOf(nums, length);
+        Arrays.sort(sort);
+
+        int centerIndex = (length + 1) / 2, leftIndex = centerIndex - 1, rightIndex = length - 1, index = 0;
+        while(index != length) {
+            if(leftIndex != -1) {
+                nums[index++] = sort[leftIndex--];
+            }
+            if(rightIndex != centerIndex - 1) {
+                nums[index++] = sort[rightIndex--];
+            }
         }
-        return num == 1;
     }
 }
+
+
+
