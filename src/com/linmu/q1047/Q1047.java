@@ -1,8 +1,5 @@
 package com.linmu.q1047;
 
-import com.sun.tools.corba.se.idl.StringGen;
-
-import javax.security.auth.callback.CallbackHandler;
 import java.util.Stack;
 
 /**

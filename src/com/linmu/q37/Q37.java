@@ -1,10 +1,7 @@
 package com.linmu.q37;
 
-import sun.jvm.hotspot.oops.Mark;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
