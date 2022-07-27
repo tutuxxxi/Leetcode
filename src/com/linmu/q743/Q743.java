@@ -1,7 +1,5 @@
 package com.linmu.q743;
 
-import com.sun.tools.javac.comp.Enter;
-
 import java.util.*;
 
 /**

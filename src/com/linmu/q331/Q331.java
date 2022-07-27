@@ -1,9 +1,7 @@
 package com.linmu.q331;
 
-import sun.jvm.hotspot.oops.Mark;
 
 import java.util.EmptyStackException;
-import java.util.SplittableRandom;
 import java.util.Stack;
 
 /**
