@@ -1,25 +1,54 @@
 package com.linmu.Test;
 
-import java.util.Scanner;
+import java.time.temporal.ValueRange;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * @author xxx_
  */
 public class Main {
-    public static void main(String[] args) {
-        // 获取输入
-        Scanner scanner = new Scanner(System.in);
-        // 读取一个整数
-        int n = scanner.nextInt();
-        // 循环n次，读取n个字符串到数组
-        String[] strs = new String[n];
-        for (int i = 0; i < n; i++) {
-            strs[i] = scanner.next();
-        }
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService executor = new ThreadPoolExecutor(1, 1,
+                0, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(), r -> new Thread(r, "work thread"));
 
-        // 循环n次，将字符串从十六进制转为八进制
-        for (int i = 0; i < n; i++) {
-            System.out.println(Integer.toOctalString(Integer.parseInt(strs[i], 16)));
-        }
+
+        // 模拟用户线程1 提交10个任务并等待返回
+        Thread user1 = new Thread(() -> {
+            Collection<Callable<Integer>> callables = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                final int var = i;
+                callables.add(() -> {
+                    Thread.sleep(100);
+                    System.out.println(Thread.currentThread().getName() + " finish the work" + var);
+                    return var;
+                });
+            }
+
+            try {
+                executor.invokeAll(callables);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }, "user1");
+        user1.setDaemon(true);
+        user1.start();
+
+
+        // 模拟用户线程2 试图关闭执行器
+        new Thread(() -> {
+            try {
+                Thread.sleep(400);
+                executor.shutdownNow();
+                System.out.println(Thread.currentThread().getName() + " shutdown the executor");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }, "user2").start();
     }
 }
+
+

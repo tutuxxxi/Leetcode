@@ -1,11 +1,8 @@
 package com.linmu.q71;
 
-import com.sun.tools.corba.se.idl.StringGen;
 
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * @author ：xxx_
