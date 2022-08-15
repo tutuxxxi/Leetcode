@@ -11,11 +11,8 @@ import java.util.concurrent.*;
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        String str = null;
-        switch (str) {
-            case "1": str = "1";
-        }
-        System.out.println();
+        List<Integer> list = new ArrayList<>();
+        list.addAll(null);
 
 //        ExecutorService executor = new ThreadPoolExecutor(1, 1,
 //                0, TimeUnit.SECONDS,
