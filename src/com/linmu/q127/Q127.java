@@ -57,8 +57,8 @@ class Solution {
         while(true) {
 
             //对栈里每一个元素进行遍历字典
-            int queueSzie = queue.size();
-            for (int i = 0; i < queueSzie; i++) {
+            int queueSize = queue.size();
+            for (int i = 0; i < queueSize; i++) {
                 String temp = queue.poll();
 
                 for (int j = 0; j < size; j++) {
@@ -94,6 +94,4 @@ class Solution {
         }
         return count;
     }
-
-
 }
