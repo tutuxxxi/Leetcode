@@ -36,9 +36,9 @@ class Solution {
             String color = item.get(1);
             String name = item.get(2);
             typeMap.put(type, typeMap.getOrDefault(type, 0) + 1);
-            typeMap.put(color, typeMap.getOrDefault(color, 0) + 1);
-            typeMap.put(name, typeMap.getOrDefault(name, 0) + 1);
+            colorMap.put(color, colorMap.getOrDefault(color, 0) + 1);
+            nameMap.put(name, nameMap.getOrDefault(name, 0) + 1);
         }
-        return map.get(ruleKey).get(ruleValue);
+        return map.get(ruleKey).getOrDefault(ruleValue, 0);
     }
 }
